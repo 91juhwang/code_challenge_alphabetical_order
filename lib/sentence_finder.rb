@@ -6,17 +6,18 @@ module SentenceFinder
     sentences = paragraph.scan(/[^\.!?]+[\.!?]/)
     array_of_words = sentences.map { |sentence| sentence.split(' ')}
 
-    a = []
+    answer = []
     array_of_words.each do |array|
       array.each do |word|
-        string_one = word.chars.sort_by(&:downcase).join
+        string_one = word.chars.sort_by(&:downcase).join.downcase
         puts string_one
         consecutive_words = string_one.each_char.each_cons(2).find_all {|letters| ALPHABETS.include? (letters.join) }
-        a << consecutive_words
+        puts "WORD IS #{consecutive_words}"
+        answer << consecutive_words
       end
-      a
+      answer
     end
-    puts a
+    puts answer
     # alphabetical_order_words = array_of_words.map { |c| c.sort_by(&:downcase) }
 
     # iterate over sentences
